@@ -2,7 +2,7 @@
 
 A melodious dashboard app that helps you grow and glow each day. Features include a real-time clock, personalized greetings, to-do list, and location-based weather widget.
 
-## ✨ Key Features
+## ✨ Key Features ✨
 
 - **🕐 Real-time Clock**: Highly readable font display with clean design
 - **👋 Personalized Greetings**: Custom greetings based on username
