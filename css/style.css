@@ -1,0 +1,1115 @@
+/* 전체 페이지 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  background: #000;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 배경 이미지 스타일 */
+body > img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  filter: brightness(0.7) contrast(1.1);
+}
+
+/* 메인 컨테이너 - Apple의 완벽한 중앙 정렬 */
+.main-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Apple의 완벽한 중앙 정렬 보장 */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* 투두가 많아질 때를 위한 자연스러운 전환 - 중앙 정렬 유지 */
+.main-container.has-todos {
+  justify-content: flex-start;
+  padding-top: 40px;
+  align-items: center; /* 중앙 정렬 유지 */
+  
+  /* Apple의 완벽한 중앙 정렬 보장 */
+  margin: 0 auto;
+}
+
+/* 시계 스타일 */
+#clock {
+  color: white;
+  font-size: clamp(4rem, 15vw, 8rem);
+  font-weight: 200;
+  text-align: center;
+  margin: 0 0 20px 0;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 인사말 스타일 */
+#greeting {
+  color: white;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  text-align: center;
+  margin: 0 0 20px 0;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Logout 버튼 스타일 - Log In과 완전히 동일 */
+#logout-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(30px) saturate(1.2);
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern" 1;
+  box-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  margin: 0 0 30px 0;
+  flex-shrink: 0;
+  
+  /* Log In 버튼과 완전히 동일한 크기 */
+  min-width: auto;
+  min-height: auto;
+  box-sizing: border-box;
+}
+
+#logout-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 28px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+#logout-btn:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 로그인 폼 스타일 - Apple 디자인 시스템 */
+#login-form {
+  text-align: center;
+  margin: 0 0 40px 0;
+  width: 100%;
+  max-width: 500px;
+  flex-shrink: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Apple 레이아웃 시스템 */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+#login-form input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 24px 32px;
+  border-radius: 50px;
+  font-size: 17px;
+  backdrop-filter: blur(30px) saturate(1.2);
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-weight: 400;
+  font-feature-settings: "kern" 1;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+}
+
+#login-form input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: normal;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+
+#login-form input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 0 0 3px rgba(255, 255, 255, 0.1),
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+#login-form button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(30px) saturate(1.2);
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern" 1;
+  box-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  
+  /* 필터 버튼과 완전히 동일한 크기 */
+  min-width: auto;
+  min-height: auto;
+  box-sizing: border-box;
+}
+
+#login-form button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 28px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+#login-form button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 투두 섹션 - Apple의 완벽한 중앙 정렬 */
+.todo-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 0 40px 0;
+  flex-shrink: 0;
+  
+  /* Apple의 중앙 정렬 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* 기본적으로 완전히 숨김 - 애니메이션 없음 */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  /* transition 완전 제거 */
+}
+
+/* 로그인 후 투두 섹션 표시 */
+.todo-section.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 투두 폼 - 애플 폼 스타일 */
+#todo-form {
+  margin: 0 0 50px 0;
+  width: 100%;
+}
+
+#todo-form input {
+  width: 100%;
+  padding: 24px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 17px;
+  backdrop-filter: blur(30px) saturate(1.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern" 1;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#todo-form input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: normal;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+
+#todo-form input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 0 0 3px rgba(255, 255, 255, 0.1),
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* 투두 리스트 */
+#todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+#todo-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#todo-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#todo-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  backdrop-filter: blur(10px);
+}
+
+#todo-list li {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(30px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+#todo-list li:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+#todo-list li.completed {
+  opacity: 0.7;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+#todo-list li.completed span {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.todo-checkbox {
+  margin-right: 18px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.todo-text {
+  flex: 1;
+  margin-right: 18px;
+  word-break: break-word;
+  color: white;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern" 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.todo-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(20px) saturate(1.1);
+  min-width: 60px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern" 1;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.todo-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.todo-btn.edit {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.todo-btn.delete {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.todo-btn.complete {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* 필터 버튼 - Apple의 일관된 여백 시스템 */
+#todo-filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0 40px 0; /* Apple의 8pt 그리드: 40px (5 * 8pt) */
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(30px) saturate(1.2);
+  font-weight: 500;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern" 1;
+  box-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 28px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.filter-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 0 0 2px rgba(255, 255, 255, 0.15),
+    0 8px 28px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* 명언 */
+#quote {
+  position: fixed;
+  bottom: 30px; /* 원래 위치로 복원 */
+  left: 30px;
+  right: 30px;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  font-weight: 300;
+  line-height: 1.5;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 8px 16px; /* 높이 더 줄이기: 상하 8px, 좌우 16px */
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  
+
+}
+
+/* 명언 텍스트 - Apple 타이포그래피 (한 줄 컴팩트) */
+#quote span:first-child {
+  display: inline-block;
+  margin: 0 8px 0 0; /* 우측 여백으로 한 줄 배치 */
+  font-size: 0.95rem; /* 폰트 크기 약간 줄이기 */
+  font-weight: 400;
+  line-height: 1.1; /* 줄 간격 더 줄이기 */
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* 작가명 - Apple 타이포그래피 (한 줄 컴팩트) */
+#quote span:last-child {
+  display: inline-block;
+  margin: 0;
+  font-size: 0.8rem; /* 폰트 크기 약간 줄이기 */
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.0; /* 줄 간격 극한 줄이기 */
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.01em; /* 자간 줄이기 */
+}
+
+
+
+/* 날씨 - Apple 디자인 시스템 기반 (초컴팩트 버전) */
+#weather {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  color: white;
+  text-align: left;
+  z-index: 2;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+  
+  /* Apple 글래스모피즘 */
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(40px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  
+  /* Apple 그림자 시스템 */
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  
+  /* Apple 간격 시스템 (초컴팩트) */
+  padding: 16px;
+  min-width: 160px;
+  max-width: 200px;
+  
+  /* Apple 애니메이션 */
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateZ(0);
+}
+
+#weather:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px) translateZ(0);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* 날씨 아이콘 - Apple 이모지 스타일 (초작게) */
+#weather span:first-child {
+  font-size: 1.8rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 8px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.3));
+  animation: weatherFloat 4s ease-in-out infinite;
+}
+
+/* 도시명 - Apple 타이포그래피 (초작게) */
+#weather span:nth-child(2) {
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* 온도 - Apple 숫자 디스플레이 (초작게 + 단위 명확) */
+#weather span:nth-child(3) {
+  font-size: 1.4rem;
+  font-weight: 300;
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.98);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  font-feature-settings: "tnum" 1, "kern" 1;
+}
+
+/* 날씨 설명 - Apple 본문 텍스트 (초작게) */
+#weather span:nth-child(4) {
+  font-size: 0.75rem;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  text-transform: capitalize;
+}
+
+/* 날씨 상세 정보 - Apple 메타 정보 (초작게) */
+#weather span:last-child {
+  font-size: 0.65rem;
+  font-weight: 500;
+  display: block;
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  
+  /* Apple 그리드 시스템 */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 날씨 상세 정보 내부 구분선 (초작게) */
+#weather span:last-child::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  margin-bottom: 8px;
+}
+
+/* Apple 애니메이션 시스템 */
+@keyframes weatherFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateZ(0); 
+  }
+  50% { 
+    transform: translateY(-2px) translateZ(0); 
+  }
+}
+
+/* 반응형 Apple 디자인 (초컴팩트) */
+@media (max-width: 768px) {
+  #weather {
+    top: 35px; /* Apple 디자인 가이드라인에 따른 충분한 여백 */
+    right: 20px;
+    left: 20px;
+    padding: 12px;
+    min-width: auto;
+    max-width: none;
+    border-radius: 14px;
+  }
+  
+  #weather span:first-child {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+  }
+  
+  #weather span:nth-child(2) {
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+  }
+  
+  #weather span:nth-child(3) {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+  
+  #weather span:nth-child(4) {
+    font-size: 0.65rem;
+    margin-bottom: 6px;
+  }
+  
+  #weather span:last-child {
+    font-size: 0.6rem;
+    gap: 6px;
+  }
+}
+
+/* Apple 다크모드 지원 */
+@media (prefers-color-scheme: dark) {
+  #weather {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  #weather:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 20px 15px;
+    min-height: 100vh;
+    justify-content: flex-start;
+    align-items: center; /* Apple의 완벽한 중앙 정렬 유지 */
+    padding-top: 220px; /* Apple 디자인 가이드라인에 따른 충분한 여백 */
+  }
+  
+  #clock {
+    font-size: clamp(3.5rem, 18vw, 5.5rem);
+    margin: 0 0 20px 0;
+    text-align: center;
+    width: 100%;
+    line-height: 1;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+    /* 검정색 배경 제거 */
+    background: none;
+    backdrop-filter: none;
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+  }
+  
+  #greeting {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+    margin: 0 0 25px 0;
+    text-align: center;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  
+  #login-form {
+    margin: 0 0 35px 0;
+    width: 100%;
+    max-width: 320px;
+    flex-shrink: 0;
+  }
+  
+  #login-form input {
+    padding: 18px 24px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  #login-form button {
+    padding: 14px 24px;
+    font-size: 14px;
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  #logout-btn {
+    padding: 14px 24px;
+    font-size: 14px;
+    margin: 0 0 25px 0;
+    width: 100%;
+    max-width: 180px;
+    flex-shrink: 0;
+  }
+  
+  #todo-form input,
+  #login-form input {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+  
+  #todo-list li {
+    padding: 14px 16px;
+  }
+  
+  .todo-actions {
+    gap: 6px;
+  }
+  
+  .todo-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    min-width: 45px;
+  }
+  
+  /* 모바일에서 명언 위젯 - 자동 스크롤 애니메이션 */
+  #quote {
+    bottom: 20px; /* 상단과 동일한 여백 (20px) */
+    left: 20px;
+    right: 20px;
+    font-size: 0.8rem;
+    padding: 12px;
+    border-radius: 15px;
+    
+    /* 고정 높이로 유지 */
+    height: 40px; /* 고정 높이 */
+    overflow: hidden; /* 넘치는 내용 숨김 */
+    
+    /* 가로 배치로 변경 */
+    display: flex;
+    flex-direction: row; /* 가로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 8px;
+  }
+  
+  /* 명언과 작가명을 함께 감싸는 컨테이너 */
+  #quote {
+    /* 기존 스타일 유지 */
+    bottom: 20px; /* 상단과 동일한 여백 (20px) */
+    left: 20px;
+    right: 20px;
+    font-size: 0.8rem;
+    padding: 12px;
+    border-radius: 15px;
+    
+    /* 고정 높이로 유지 */
+    height: 40px; /* 고정 높이 */
+    overflow: hidden; /* 넘치는 내용 숨김 */
+    
+    /* 가로 배치로 변경 */
+    display: flex;
+    flex-direction: row; /* 가로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 8px;
+  }
+  
+  /* 명언과 작가명을 함께 스크롤 */
+  #quote span:first-child,
+  #quote span:last-child {
+    font-size: 0.8rem;
+    margin: 0;
+    text-align: left;
+    display: inline-block;
+    white-space: nowrap; /* 줄바꿈 방지 */
+  }
+  
+  /* 작가명 스타일 */
+  #quote span:last-child {
+    font-size: 0.6rem;
+    font-style: italic;
+    margin-left: 8px; /* 명언과의 간격 */
+  }
+  
+  /* 무한 캐러셀을 위한 컨테이너 */
+  #quote {
+    /* 기존 스타일 유지 */
+    bottom: 20px; /* 상단과 동일한 여백 (20px) */
+    left: 20px;
+    right: 20px;
+    font-size: 0.8rem;
+    padding: 12px;
+    border-radius: 15px;
+    
+    /* 고정 높이로 유지 */
+    height: 40px; /* 고정 높이 */
+    overflow: hidden; /* 넘치는 내용 숨김 */
+    
+    /* 가로 배치로 변경 */
+    display: flex;
+    flex-direction: row; /* 가로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 8px;
+    
+    /* 원형 박스는 고정 - 애니메이션 제거 */
+  }
+  
+  /* 무한 캐러셀을 위한 컨테이너 */
+  #quote {
+    /* 기존 스타일 유지 */
+    bottom: 20px; /* 상단과 동일한 여백 (20px) */
+    left: 20px;
+    right: 20px;
+    font-size: 0.8rem;
+    padding: 12px;
+    border-radius: 15px;
+    
+    /* 고정 높이로 유지 */
+    height: 40px; /* 고정 높이 */
+    overflow: hidden; /* 넘치는 내용 숨김 */
+    
+    /* 원형 박스는 고정 - 애니메이션 제거 */
+  }
+  
+  /* 명언과 작가명을 함께 묶는 내부 컨테이너 */
+  .quote-content {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* 명언과 작가명 사이 간격 */
+    white-space: nowrap;
+    
+    /* 무한 캐러셀 애니메이션 */
+    animation: carouselLoop 25s linear infinite; /* 25초 무한 반복 */
+  }
+  
+  /* 명언 텍스트 */
+  #quote span:first-child {
+    font-size: 0.8rem;
+    margin: 0;
+    text-align: left;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: 400;
+  }
+  
+  /* 작가명 텍스트 */
+  #quote span:last-child {
+    font-size: 0.6rem;
+    font-style: italic;
+    margin: 0;
+    text-align: left;
+    display: inline-block;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.8); /* 작가명은 약간 투명하게 */
+  }
+  
+  /* 깔끔한 무한 캐러셀 loop 애니메이션 */
+  @keyframes carouselLoop {
+    0% {
+      transform: translateX(100%); /* 우측에서 시작 */
+    }
+    100% {
+      transform: translateX(-100%); /* 좌측으로 완전히 이동 */
+    }
+  }
+  
+  /* 모바일 명언 위젯 내부 요소들 - 한 줄 Apple 스타일 */
+  #quote span:first-child {
+    font-size: 0.8rem;
+    margin: 0;
+    text-align: left;
+    display: inline-block;
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  #quote span:last-child {
+    font-size: 0.6rem;
+    margin: 0;
+    text-align: right;
+    display: inline-block;
+    width: auto;
+    flex-shrink: 0;
+    margin-left: auto; /* 우측 끝에 배치 */
+    font-style: italic;
+  }
+  
+  /* 모바일에서 날씨 위젯 위치 조정 - Apple 스타일 */
+  #weather {
+    position: fixed;
+    top: 20px; /* 상단 여백을 20px로 통일 */
+    right: 20px;
+    left: 20px;
+    margin: 0;
+    font-size: 0.7rem;
+    padding: 8px 12px;
+    min-width: auto;
+    max-width: none;
+    width: auto;
+    border-radius: 12px;
+    flex-shrink: 0;
+    z-index: 5;
+    
+    /* 높이를 최소화 - 한 줄로 표시 */
+    min-height: auto;
+    max-height: 40px; /* 한 줄 높이로 최소화 */
+    overflow: hidden;
+    
+    /* 한 줄 레이아웃을 위한 flex 설정 */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* 모바일 날씨 위젯 내부 요소들 - 한 줄 Apple 스타일 */
+  #weather span:first-child {
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: left;
+    display: inline-block;
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  #weather span:nth-child(2) {
+    font-size: 0.6rem;
+    margin: 0;
+    text-align: left;
+    display: inline-block;
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  #weather span:nth-child(3) {
+    font-size: 0.9rem;
+    margin: 0;
+    text-align: left;
+    display: inline-block;
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  #weather span:nth-child(4) {
+    font-size: 0.5rem;
+    margin: 0;
+    text-align: left;
+    display: inline-block;
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  #weather span:last-child {
+    font-size: 0.45rem;
+    gap: 6px;
+    text-align: left;
+    display: inline-block;
+    width: auto;
+    flex-shrink: 0;
+    margin-left: auto; /* 우측 끝에 배치 */
+  }
+  
+  #todo-filters {
+    margin: 20px 0 250px 0; /* 모든 화면 크기에서 완벽한 시각적 균형 */
+    padding: 12px;
+    gap: 8px;
+  }
+  
+  .filter-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/* 매우 작은 모바일 화면 */
+@media (max-width: 480px) {
+  .main-container {
+    padding: 15px 10px;
+    padding-top: 70px; /* 작은 화면에서도 시계가 가려지지 않도록 */
+  }
+  
+  #clock {
+    font-size: clamp(3rem, 22vw, 5rem);
+    margin: 0 0 15px 0;
+  }
+  
+  #greeting {
+    font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+    margin: 0 0 20px 0;
+  }
+  
+  #login-form {
+    margin: 0 0 30px 0;
+  }
+  
+  #login-form input {
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+  
+  #login-form button {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+  
+  #logout-btn {
+    padding: 12px 20px;
+    font-size: 13px;
+    margin: 0 0 20px 0;
+  }
+  
+  #weather {
+    margin: 20px auto 25px auto;
+    padding: 16px;
+    max-width: 260px;
+  }
+}
+
+/* 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-container > * {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.main-container > *:nth-child(1) { animation-delay: 0.1s; }
+.main-container > *:nth-child(2) { animation-delay: 0.2s; }
+.main-container > *:nth-child(3) { animation-delay: 0.3s; }
+.main-container > *:nth-child(4) { animation-delay: 0.4s; }
